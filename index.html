@@ -104,6 +104,18 @@
             transform: translateX(-50%);
             font-size: 1em;
             color: #ffffff;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
         }
         #introduction, #work-with {
             text-align: center;
@@ -176,7 +188,7 @@
             <div class="header">Welcome</div>
             <div id="banner-text">CRIPPER</div>
             <div id="banner-subtext">(Still in development)</div>
-            <div id="scroll-indicator">Scroll down</div>
+            <div id="scroll-indicator">&#x21E3;</div>
         </section>
         <section id="introduction" class="theme-light">
             <div class="header">Basic info</div>
