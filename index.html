@@ -1,1 +1,262 @@
-abc
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cripper's Portfolio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400&family=Montserrat:wght@500&family=Bangers&display=swap');
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #1e1e1e;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            width: 100vw;
+            position: relative;
+            z-index: 1;
+        }
+        section {
+            flex: 0 0 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            transition: background-color 1s, color 1s, font-family 1s;
+        }
+        .header {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+            font-size: 1.5em;
+            font-family: 'Bangers', sans-serif;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #ffffff;
+            z-index: 10;
+            opacity: 0;
+        }
+        .header-animation {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(1);
+            font-size: 2em;
+            animation: enlarge 0.8s forwards, moveToTop 0.8s 0.4s forwards;
+        }
+        @keyframes enlarge {
+            from {
+                transform: translate(-50%, -50%) scale(1);
+            }
+            to {
+                transform: translate(-50%, -50%) scale(1.5);
+            }
+        }
+        @keyframes moveToTop {
+            from {
+                top: 50%;
+            }
+            to {
+                top: 10px;
+                transform: translate(-50%, 0) scale(1.2);
+                opacity: 1;
+            }
+        }
+        #banner {
+            background-color: transparent;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+        #banner-text {
+            font-size: 3em;
+            font-weight: bold;
+            text-shadow: 0 0 1px #00ffff, 0 0 2px #00ffff;
+            background: linear-gradient(90deg, #00ffff, #00cccc, #00ffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 1.5s infinite alternate;
+        }
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 1px #00ffff, 0 0 2px #00ffff, 0 0 3px #00ffff, 0 0 4px #00cccc;
+            }
+            to {
+                text-shadow: 0 0 2px #00ffff, 0 0 3px #00ffff, 0 0 4px #00ffff, 0 0 5px #00cccc;
+            }
+        }
+        #introduction, #work-with {
+            text-align: center;
+            padding: 0 20px;
+        }
+        #introduction img {
+            margin-top: 20px;
+            max-width: 200px;
+        }
+        #work-with img {
+            margin: 20px;
+            max-width: 150px;
+            border-radius: 10px;
+        }
+        .plus-square {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 150px;
+            height: 150px;
+            background-color: #ffffff;
+            color: #000000;
+            font-size: 3em;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+            font-family: 'Roboto', sans-serif;
+            border-radius: 10px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <section id="banner" class="theme-dark">
+            <div class="header">Welcome</div>
+            <div id="banner-text">CRIPPER</div>
+        </section>
+        <section id="introduction" class="theme-light">
+            <div class="header">Basic info</div>
+            <div>
+                <h1>Hey there! I am a 16 year old developer, from Israel!</h1>
+                <img src="https://img.freepik.com/free-vector/illustration-israel-flag_53876-27122.jpg" alt="Israel Flag">
+            </div>
+        </section>
+        <section id="work-with" class="theme-blue">
+            <div class="header">ABOUT ME</div>
+            <div>
+                <h1>Work with:</h1>
+                <img src="https://cdn.discordapp.com/icons/1030585192332673034/54183b6c7b9fc4787dd30e1cfa088a0a.webp?size=128" alt="First Image">
+                <img src="https://cdn.discordapp.com/icons/1143123668306763806/3ee4b48434f7b4bffe3e715572e948c4.webp?size=128" alt="Icon 2">
+                <div class="plus-square" id="plus-square">+</div>
+            </div>
+        </section>
+    </div>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <p>Are you interested in working with Cripper?<br>Add me now @dev.cripper on discord!</p>
+        </div>
+    </div>
+
+    <script>
+        const themes = [
+            { backgroundColor: '#1e1e1e', color: '#ffffff', fontFamily: 'Orbitron, sans-serif', title: 'Welcome' }, // dark theme
+            { backgroundColor: '#ffffff', color: '#000000', fontFamily: 'Roboto, sans-serif', title: 'Basic info' }, // light theme
+            { backgroundColor: '#005f99', color: '#ffffff', fontFamily: 'Montserrat, sans-serif', title: 'ABOUT ME' }  // blue theme
+        ];
+
+        let currentSection = 0;
+        const sections = document.querySelectorAll('section');
+
+        function applyTheme(sectionIndex) {
+            const theme = themes[sectionIndex % themes.length];
+            sections[sectionIndex].style.backgroundColor = theme.backgroundColor;
+            sections[sectionIndex].style.color = theme.color;
+            sections[sectionIndex].style.fontFamily = theme.fontFamily;
+
+            const header = sections[sectionIndex].querySelector('.header');
+            header.textContent = theme.title;
+            header.classList.remove('header-animation');
+            setTimeout(() => {
+                header.classList.add('header-animation');
+            }, 100); 
+        }
+
+        document.addEventListener('wheel', (event) => {
+            if (event.deltaY > 0) {
+                if (currentSection < sections.length - 1) {
+                    currentSection++;
+                }
+            } else {
+                if (currentSection > 0) {
+                    currentSection--;
+                }
+            }
+            sections[currentSection].scrollIntoView({ behavior: 'smooth' });
+            applyTheme(currentSection);
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowDown') {
+                if (currentSection < sections.length - 1) {
+                    currentSection++;
+                }
+            } else if (event.key === 'ArrowUp') {
+                if (currentSection > 0) {
+                    currentSection--;
+                }
+            }
+            sections[currentSection].scrollIntoView({ behavior: 'smooth' });
+            applyTheme(currentSection);
+        });
+
+        applyTheme(currentSection);
+
+        const modal = document.getElementById("myModal");
+        const plusSquare = document.getElementById("plus-square");
+        const closeModal = document.getElementById("closeModal");
+
+        plusSquare.onclick = function() {
+            modal.style.display = "flex";
+        }
+
+        closeModal.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
