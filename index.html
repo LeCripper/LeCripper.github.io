@@ -198,18 +198,18 @@
             color: #000000;
             font-size: 1.5em;
         }
-        #introduction, #work-with {
+        #introduction, #work-with, #final-page {
             text-align: center;
             padding: 0 20px;
         }
-        #introduction img {
-            margin-top: 20px;
-            max-width: 200px;
-        }
-        #work-with img {
+        #introduction img, #work-with img {
             margin: 20px;
-            max-width: 150px;
+            max-width: 200px;
             border-radius: 10px;
+        }
+        #final-page {
+            background-color: #f2a2a2;
+            color: #000000;
         }
     </style>
 </head>
@@ -236,16 +236,22 @@
                 <div class="plus-square" id="plus-square">+</div>
             </div>
         </section>
+        <section id="final-page" class="theme-end">
+            <div class="header">THE END</div>
+            <div>
+                <h1>You've reached the final page!<br>Check back later for new stuff</h1>
+            </div>
+        </section>
     </div>
 
     <div id="myModal" class="modal">
         <div class="modal-content">
             <span class="close" id="closeModal">&times;</span>
-            <p>Are you interested in working with Cripper?<br>Add me now @dev.cripper on discord!</p>
+            <p>Content goes here</p>
         </div>
     </div>
 
-    <div class="social-ui" id="social-ui">
+    <div id="social-ui" class="social-ui">
         <span id="close-social">&times;</span>
         <a href="https://www.youtube.com/@agentcripper" target="_blank">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg">
@@ -263,9 +269,10 @@
 
     <script>
         const themes = [
-            { backgroundColor: '#1e1e1e', color: '#ffffff', fontFamily: 'Orbitron, sans-serif', title: 'Welcome' }, // dark theme
-            { backgroundColor: '#ffffff', color: '#000000', fontFamily: 'Roboto, sans-serif', title: 'Basic info' }, // light theme
-            { backgroundColor: '#005f99', color: '#ffffff', fontFamily: 'Montserrat, sans-serif', title: 'ABOUT ME' }  // blue theme
+            { backgroundColor: '#1e1e1e', color: '#ffffff', fontFamily: 'Orbitron, sans-serif', title: 'Welcome' },
+            { backgroundColor: '#ffffff', color: '#000000', fontFamily: 'Roboto, sans-serif', title: 'Basic info' },
+            { backgroundColor: '#005f99', color: '#ffffff', fontFamily: 'Montserrat, sans-serif', title: 'ABOUT ME' },
+            { backgroundColor: '#f2a2a2', color: '#000000', fontFamily: 'Bangers, sans-serif', title: 'THE END' }
         ];
 
         let currentSection = 0;
@@ -339,18 +346,18 @@
 
         bannerText.onclick = function() {
             socialUi.style.display = "block";
-            document.body.style.overflow = "hidden"; // Prevent scrolling on the main content
+            document.body.style.overflow = "hidden";
         }
 
         closeSocial.onclick = function() {
             socialUi.style.display = "none";
-            document.body.style.overflow = "auto"; // Restore scrolling on the main content
+            document.body.style.overflow = "auto";
         }
 
         window.onclick = function(event) {
             if (event.target == socialUi) {
                 socialUi.style.display = "none";
-                document.body.style.overflow = "auto"; // Restore scrolling on the main content
+                document.body.style.overflow = "auto";
             }
         }
     </script>
