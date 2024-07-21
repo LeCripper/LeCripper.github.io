@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cripper's Portfolio</title>
+    <meta name="description" content="Welcome to Cripper's portfolio site!">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400&family=Montserrat:wght@500&family=Bangers&family=Open+Sans:wght@400&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400&family=Montserrat:wght@500&family=Bangers&display=swap');
 
         body, html {
             margin: 0;
@@ -73,6 +74,7 @@
         #banner {
             background-color: transparent;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
         }
         #banner-text {
             font-size: 3em;
@@ -82,6 +84,16 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: glow 1.5s infinite alternate;
+            cursor: pointer;
+        }
+        #scroll-indicator {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2em;
+            color: #ffffff;
+            animation: bounce 2s infinite;
         }
         @keyframes glow {
             from {
@@ -91,32 +103,31 @@
                 text-shadow: 0 0 2px #00ffff, 0 0 3px #00ffff, 0 0 4px #00ffff, 0 0 5px #00cccc;
             }
         }
-        #introduction, #work-with {
-            text-align: center;
-            padding: 0 20px;
-        }
-        #introduction img {
-            margin-top: 20px;
-            max-width: 200px;
-        }
-        #work-with img {
-            margin: 20px;
-            max-width: 150px;
-            border-radius: 10px;
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
         }
         .plus-square {
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
             background-color: #000000;
             color: #ffffff;
             font-size: 2.5em;
             border-radius: 10px;
             cursor: pointer;
+            margin-left: 20px;
         }
-        .modal, .social-ui {
+        .modal {
             display: none;
             position: fixed;
             z-index: 100;
@@ -124,12 +135,12 @@
             top: 0;
             width: 100%;
             height: 100%;
-            overflow: auto;
+            overflow: hidden;
             background-color: rgba(0, 0, 0, 0.7);
             justify-content: center;
             align-items: center;
         }
-        .modal-content, .social-ui-content {
+        .modal-content {
             background-color: #fefefe;
             margin: auto;
             padding: 20px;
@@ -153,32 +164,51 @@
             text-decoration: none;
             cursor: pointer;
         }
-        .scroll-indicator {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 2em;
-            color: #ffffff;
-            animation: bounce 1s infinite;
-        }
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-10px);
-            }
-            60% {
-                transform: translateY(-5px);
-            }
-        }
         .social-ui {
-            background-color: rgba(0, 0, 0, 0.7);
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            z-index: 20;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(5px);
         }
-        .social-ui-content {
-            background-color: #ffffff;
+        .social-ui a {
+            display: flex;
+            align-items: center;
+            color: #000000;
+            text-decoration: none;
+            margin: 10px 0;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.2em;
+        }
+        .social-ui a svg {
+            margin-right: 10px;
+        }
+        #close-social {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            color: #000000;
+            font-size: 1.5em;
+        }
+        #introduction, #work-with, #final-page {
+            text-align: center;
+            padding: 0 20px;
+        }
+        #introduction img, #work-with img {
+            margin: 20px;
+            max-width: 200px;
+            border-radius: 10px;
+        }
+        #final-page {
+            background-color: #f2a2a2;
             color: #000000;
         }
     </style>
@@ -188,7 +218,7 @@
         <section id="banner" class="theme-dark">
             <div class="header">Welcome</div>
             <div id="banner-text">CRIPPER</div>
-            <div class="scroll-indicator">&#8595;</div>
+            <div id="scroll-indicator">&#x2193;</div>
         </section>
         <section id="introduction" class="theme-light">
             <div class="header">Basic info</div>
@@ -206,7 +236,7 @@
                 <div class="plus-square" id="plus-square">+</div>
             </div>
         </section>
-        <section id="end-page" class="theme-end">
+        <section id="final-page" class="theme-end">
             <div class="header">THE END</div>
             <div>
                 <h1>You've reached the final page!<br>Check back later for new stuff</h1>
@@ -222,8 +252,117 @@
     </div>
 
     <div id="social-ui" class="social-ui">
-        <div class="social-ui-content">
-            <span class="close" id="close-social">&times;</span>
-            <a href="https://www.youtube.com/@agentcripper" target="_blank">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M21.8 8S21.56 6.4 20.8 5.64c-.78-.8-1.65-.8-2.05-.85C15.92 4.5 12 4.5 12 4.5h-.01s-3.92 0-5.74.29c-.4.04-1.27.05-2.05.
+        <span id="close-social">&times;</span>
+        <a href="https://www.youtube.com/@agentcripper" target="_blank">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21.8 8S21.56 6.4 20.8 5.64c-.78-.8-1.65-.8-2.05-.85C15.92 4.5 12 4.5 12 4.5h-.01s-3.92 0-5.74.29c-.4.04-1.27.05-2.05.85-.77.76-1 .87-1.02 2.36C3.1 9.6 3 10.7 3 12c0 1.3.1 2.4.18 3.36.02 1.5.24 1.61 1.02 2.36.78.8 1.8.78 2.24.86C8.06 19.5 12 19.5 12 19.5s3.92 0 5.74-.29c.4-.04 1.27-.05 2.05-.85.77-.76 1-.87 1.02-2.36.08-.96.18-2.06.18-3.36 0-1.3-.1-2.4-.18-3.36zM10 14.6v-5.2l5.2 2.6-5.2 2.6z"/>
+            </svg>
+            My YouTube
+        </a>
+        <a href="https://github.com/LeCripper" target="_blank">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.11.82-.26.82-.577 0-.286-.01-1.04-.015-2.04-3.338.726-4.042-1.61-4.042-1.61-.546-1.385-1.333-1.755-1.333-1.755-1.09-.744.082-.729.082-.729 1.205.084 1.84 1.237 1.84 1.237 1.07 1.835 2.81 1.305 3.495.997.107-.776.418-1.305.762-1.605-2.665-.304-5.466-1.333-5.466-5.933 0-1.31.465-2.382 1.235-3.222-.125-.303-.535-1.522.115-3.176 0 0 1.005-.322 3.3 1.23.955-.265 1.98-.398 3-.403 1.02.005 2.045.138 3 .403 2.28-1.552 3.285-1.23 3.285-1.23.655 1.655.245 2.873.12 3.176.77.84 1.235 1.912 1.235 3.222 0 4.61-2.805 5.625-5.475 5.92.43.372.81 1.102.81 2.222 0 1.606-.015 2.896-.015 3.286 0 .323.21.694.825.576C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+            My GitHub
+        </a>
+    </div>
+
+    <script>
+        const themes = [
+            { backgroundColor: '#1e1e1e', color: '#ffffff', fontFamily: 'Orbitron, sans-serif', title: 'Welcome' },
+            { backgroundColor: '#ffffff', color: '#000000', fontFamily: 'Roboto, sans-serif', title: 'Basic info' },
+            { backgroundColor: '#005f99', color: '#ffffff', fontFamily: 'Montserrat, sans-serif', title: 'ABOUT ME' },
+            { backgroundColor: '#f2a2a2', color: '#000000', fontFamily: 'Bangers, sans-serif', title: 'THE END' }
+        ];
+
+        let currentSection = 0;
+        const sections = document.querySelectorAll('section');
+
+        function applyTheme(sectionIndex) {
+            const theme = themes[sectionIndex % themes.length];
+            sections[sectionIndex].style.backgroundColor = theme.backgroundColor;
+            sections[sectionIndex].style.color = theme.color;
+            sections[sectionIndex].style.fontFamily = theme.fontFamily;
+
+            const header = sections[sectionIndex].querySelector('.header');
+            header.textContent = theme.title;
+            header.classList.remove('header-animation');
+            setTimeout(() => {
+                header.classList.add('header-animation');
+            }, 100); 
+        }
+
+        document.addEventListener('wheel', (event) => {
+            if (event.deltaY > 0) {
+                if (currentSection < sections.length - 1) {
+                    currentSection++;
+                }
+            } else {
+                if (currentSection > 0) {
+                    currentSection--;
+                }
+            }
+            sections[currentSection].scrollIntoView({ behavior: 'smooth' });
+            applyTheme(currentSection);
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowDown') {
+                if (currentSection < sections.length - 1) {
+                    currentSection++;
+                }
+            } else if (event.key === 'ArrowUp') {
+                if (currentSection > 0) {
+                    currentSection--;
+                }
+            }
+            sections[currentSection].scrollIntoView({ behavior: 'smooth' });
+            applyTheme(currentSection);
+        });
+
+        applyTheme(currentSection);
+
+        const modal = document.getElementById("myModal");
+        const plusSquare = document.getElementById("plus-square");
+        const closeModal = document.getElementById("closeModal");
+
+        plusSquare.onclick = function() {
+            modal.style.display = "flex";
+            document.body.style.overflow = "hidden";  // Prevent scrolling when modal is open
+        }
+
+        closeModal.onclick = function() {
+            modal.style.display = "none";
+            document.body.style.overflow = "auto";  // Re-enable scrolling when modal is closed
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+                document.body.style.overflow = "auto";  // Re-enable scrolling when clicking outside modal
+            }
+        }
+
+        const bannerText = document.getElementById("banner-text");
+        const socialUi = document.getElementById("social-ui");
+        const closeSocial = document.getElementById("close-social");
+
+        bannerText.onclick = function() {
+            socialUi.style.display = "block";
+            document.body.style.overflow = "hidden";
+        }
+
+        closeSocial.onclick = function() {
+            socialUi.style.display = "none";
+            document.body.style.overflow = "auto";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == socialUi) {
+                socialUi.style.display = "none";
+                document.body.style.overflow = "auto";
+            }
+        }
+    </script>
+</body>
+</html>
