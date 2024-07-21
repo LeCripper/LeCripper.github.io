@@ -6,7 +6,7 @@
     <title>Cripper's Portfolio</title>
     <meta name="description" content="Welcome to Cripper's portfolio site!">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400&family=Montserrat:wght@500&family=Bangers&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400&family=Montserrat:wght@500&family=Bangers&family=Open+Sans:wght@300&display=swap');
 
         body, html {
             margin: 0;
@@ -210,6 +210,7 @@
         #final-page {
             background-color: #f2a2a2;
             color: #000000;
+            font-family: 'Open Sans', sans-serif;
         }
     </style>
 </head>
@@ -272,7 +273,7 @@
             { backgroundColor: '#1e1e1e', color: '#ffffff', fontFamily: 'Orbitron, sans-serif', title: 'Welcome' },
             { backgroundColor: '#ffffff', color: '#000000', fontFamily: 'Roboto, sans-serif', title: 'Basic info' },
             { backgroundColor: '#005f99', color: '#ffffff', fontFamily: 'Montserrat, sans-serif', title: 'ABOUT ME' },
-            { backgroundColor: '#f2a2a2', color: '#000000', fontFamily: 'Bangers, sans-serif', title: 'THE END' }
+            { backgroundColor: '#f2a2a2', color: '#000000', fontFamily: 'Open Sans, sans-serif', title: 'THE END' }
         ];
 
         let currentSection = 0;
@@ -333,13 +334,11 @@
 
         closeModal.onclick = function() {
             modal.style.display = "none";
-            document.body.style.overflow = "auto";  // Re-enable scrolling when modal is closed
         }
 
         window.onclick = function(event) {
             if (event.target == modal) {
                 modal.style.display = "none";
-                document.body.style.overflow = "auto";  // Re-enable scrolling when clicking outside modal
             }
         }
 
@@ -349,18 +348,16 @@
 
         bannerText.onclick = function() {
             socialUi.style.display = "block";
-            document.body.style.overflow = "hidden";
+            document.body.style.overflow = "hidden";  // Prevent scrolling when UI is open
         }
 
         closeSocial.onclick = function() {
             socialUi.style.display = "none";
-            document.body.style.overflow = "auto";
         }
 
         window.onclick = function(event) {
             if (event.target == socialUi) {
                 socialUi.style.display = "none";
-                document.body.style.overflow = "auto";
             }
         }
     </script>
