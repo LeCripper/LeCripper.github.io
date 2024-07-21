@@ -73,6 +73,7 @@
         #banner {
             background-color: transparent;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
         }
         #banner-text {
             font-size: 3em;
@@ -82,6 +83,11 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: glow 1.5s infinite alternate;
+        }
+        #banner-subtext {
+            font-size: 1em;
+            color: gray;
+            margin-top: 10px;
         }
         @keyframes glow {
             from {
@@ -115,7 +121,7 @@
             font-size: 2.5em;
             border-radius: 10px;
             cursor: pointer;
-            margin-left: 20px; /* Move to the right */
+            margin-left: 20px;
         }
         .modal {
             display: none;
@@ -161,6 +167,7 @@
         <section id="banner" class="theme-dark">
             <div class="header">Welcome</div>
             <div id="banner-text">CRIPPER</div>
+            <div id="banner-subtext">(Still in development)</div>
         </section>
         <section id="introduction" class="theme-light">
             <div class="header">Basic info</div>
