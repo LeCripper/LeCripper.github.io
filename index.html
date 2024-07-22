@@ -323,6 +323,31 @@
 
         applyTheme(currentSection);
 
+        let startY;
+
+        document.addEventListener('touchstart', (event) => {
+            startY = event.touches[0].clientY;
+        });
+
+        document.addEventListener('touchmove', (event) => {
+            const endY = event.touches[0].clientY;
+            const diffY = startY - endY;
+
+            if (diffY > 30) {
+                if (currentSection < sections.length - 1) {
+                    currentSection++;
+                    sections[currentSection].scrollIntoView({ behavior: 'smooth' });
+                    applyTheme(currentSection);
+                }
+            } else if (diffY < -30) {
+                if (currentSection > 0) {
+                    currentSection--;
+                    sections[currentSection].scrollIntoView({ behavior: 'smooth' });
+                    applyTheme(currentSection);
+                }
+            }
+        });
+
         const modal = document.getElementById("myModal");
         const plusSquare = document.getElementById("plus-square");
         const closeModal = document.getElementById("closeModal");
