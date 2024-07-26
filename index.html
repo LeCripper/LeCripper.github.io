@@ -390,6 +390,43 @@
                 socialUi.style.display = "none";
             }
         }
+
+        async function fetchAIResponse(message) {
+            const url = `http://eu3.diresnode.com:3009/api?item=getai&message=${encodeURIComponent(message)}`;
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                console.error('Error fetching AI response:', error);
+                return { error: 'Failed to fetch AI response' };
+            }
+        }
+
+        async function handleAIRequest() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const message = urlParams.get('message');
+            if (message) {
+                const aiResponse = await fetchAIResponse(message);
+                console.log('AI Response:', aiResponse);
+                const aiResponseContainer = document.createElement('div');
+                aiResponseContainer.style.position = 'fixed';
+                aiResponseContainer.style.top = '10px';
+                aiResponseContainer.style.right = '10px';
+                aiResponseContainer.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+                aiResponseContainer.style.color = '#fff';
+                aiResponseContainer.style.padding = '20px';
+                aiResponseContainer.style.borderRadius = '10px';
+                aiResponseContainer.style.zIndex = '1000';
+                aiResponseContainer.innerText = JSON.stringify(aiResponse, null, 2);
+                document.body.appendChild(aiResponseContainer);
+            }
+        }
+
+        window.onload = handleAIRequest;
     </script>
 </body>
 </html>
