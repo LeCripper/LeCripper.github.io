@@ -6,6 +6,7 @@
     <title>Cripper's Portfolio</title>
     <meta name="description" content="Welcome to Cripper's portfolio site!">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Roboto:wght@400&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400&family=Montserrat:wght@500&family=Bangers&family=Open+Sans:wght@300&display=swap');
 
         body, html {
@@ -15,6 +16,7 @@
             height: 100%;
             overflow: hidden;
             background-color: #1e1e1e;
+            color: #ffffff;
         }
         .container {
             display: flex;
@@ -22,7 +24,6 @@
             height: 100vh;
             width: 100vw;
             position: relative;
-            z-index: 1;
         }
         section {
             flex: 0 0 100vh;
@@ -39,9 +40,9 @@
             text-align: center;
             padding: 10px;
             font-size: 1.5em;
-            font-family: 'Bangers', sans-serif;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700;
             background-color: rgba(0, 0, 0, 0.5);
-            color: #ffffff;
             z-index: 10;
             opacity: 0;
         }
@@ -72,18 +73,15 @@
             }
         }
         #banner {
-            background-color: transparent;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            background-color: #333;
             text-align: center;
         }
         #banner-text {
             font-size: 3em;
-            font-weight: bold;
-            text-shadow: 0 0 1px #00ffff, 0 0 2px #00ffff;
-            background: linear-gradient(90deg, #00ffff, #00cccc, #00ffff);
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(90deg, #ff6ec7, #ffc600, #00ffde);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: glow 1.5s infinite alternate;
             cursor: pointer;
         }
         #scroll-indicator {
@@ -94,14 +92,6 @@
             font-size: 2em;
             color: #ffffff;
             animation: bounce 2s infinite;
-        }
-        @keyframes glow {
-            from {
-                text-shadow: 0 0 1px #00ffff, 0 0 2px #00ffff, 0 0 3px #00ffff, 0 0 4px #00cccc;
-            }
-            to {
-                text-shadow: 0 0 2px #00ffff, 0 0 3px #00ffff, 0 0 4px #00ffff, 0 0 5px #00cccc;
-            }
         }
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% {
@@ -120,7 +110,7 @@
             align-items: center;
             width: 120px;
             height: 120px;
-            background-color: #000000;
+            background-color: #444;
             color: #ffffff;
             font-size: 2.5em;
             border-radius: 10px;
@@ -136,12 +126,13 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: rgba(0, 0, 0, 0.8);
             justify-content: center;
             align-items: center;
         }
         .modal-content {
-            background-color: #fefefe;
+            background-color: #2e2e2e;
+            color: #ffffff;
             margin: auto;
             padding: 20px;
             border: 1px solid #888;
@@ -152,7 +143,7 @@
             border-radius: 10px;
         }
         .close {
-            color: #aaa;
+            color: #ccc;
             float: right;
             font-size: 28px;
             font-weight: bold;
@@ -160,7 +151,7 @@
         }
         .close:hover,
         .close:focus {
-            color: #000;
+            color: #ffffff;
             text-decoration: none;
             cursor: pointer;
         }
@@ -170,7 +161,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background-color: #ffffff;
+            background-color: #2e2e2e;
             padding: 20px;
             border-radius: 10px;
             text-align: center;
@@ -181,7 +172,7 @@
         .social-ui a {
             display: flex;
             align-items: center;
-            color: #000000;
+            color: #ffffff;
             text-decoration: none;
             margin: 10px 0;
             font-family: 'Roboto', sans-serif;
@@ -195,22 +186,57 @@
             top: 10px;
             right: 10px;
             cursor: pointer;
-            color: #000000;
+            color: #ffffff;
             font-size: 1.5em;
         }
-        #introduction, #work-with, #final-page {
+        #introduction, #projects, #final-page {
             text-align: center;
             padding: 0 20px;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 400;
         }
-        #introduction img, #work-with img {
+        #introduction img {
             margin: 20px;
             max-width: 200px;
             border-radius: 10px;
         }
+        #projects {
+            background-color: #444;
+            color: #ffffff;
+        }
+        .project {
+            margin: 20px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        .project img {
+            max-width: 200px;
+            border-radius: 10px;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        .project-image-large {
+            max-width: 300px; /* Adjust the size as needed */
+        }
+        .project:hover {
+            transform: translateY(-10px);
+        }
+        .project:hover img {
+            transform: scale(1.1);
+        }
+        .project-title {
+            margin-top: 10px;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: #ffc600;
+            transition: color 0.3s;
+        }
+        .project-title:hover {
+            color: #ff6ec7;
+        }
         #final-page {
-            background-color: #f2a2a2;
-            color: #000000;
-            font-family: 'Open Sans', sans-serif;
+            background-color: #333;
+            color: #ffffff;
         }
 
         /* Media query for mobile devices */
@@ -232,17 +258,19 @@
         <section id="introduction" class="theme-light">
             <div class="header">Basic info</div>
             <div>
-                <h1>Hey there! I am a 16 year old developer, from Israel!</h1>
+                <h1>I am a 16 year old Developer, from Israel!</h1>
                 <img src="https://img.freepik.com/free-vector/illustration-israel-flag_53876-27122.jpg" alt="Israel Flag">
             </div>
         </section>
-        <section id="work-with" class="theme-blue">
-            <div class="header">ABOUT ME</div>
-            <div>
-                <h1>Work with:</h1>
-                <img src="https://cdn.discordapp.com/icons/1030585192332673034/54183b6c7b9fc4787dd30e1cfa088a0a.webp?size=128" alt="First Image">
-                <img src="https://cdn.discordapp.com/icons/1143123668306763806/3ee4b48434f7b4bffe3e715572e948c4.webp?size=128" alt="Icon 2">
-                <div class="plus-square" id="plus-square">+</div>
+        <section id="projects" class="theme-projects">
+            <div class="header">My Projects</div>
+            <div class="project">
+                <img src="https://cdn.discordapp.com/attachments/1245456718117474425/1267960491582423100/image.png?ex=66aaafba&is=66a95e3a&hm=20e95421ae18a73488da9b1647d21df9d6c3e1a22b65526ad59740d16b34c86a&" alt="Project 1" onclick="location.href='/skriptai.html'">
+                <div class="project-title" onclick="location.href='/skriptai.html'">SkriptAI</div>
+            </div>
+            <div class="project">
+                <img class="project-image-large" src="https://cdn.discordapp.com/icons/1143123668306763806/3ee4b48434f7b4bffe3e715572e948c4.webp?size=128" alt="Project 2" onclick="location.href='https://discord.gg/H4fxM5qsyg'">
+                <div class="project-title" onclick="location.href='https://discord.gg/H4fxM5qsyg'">CR</div>
             </div>
         </section>
         <section id="final-page" class="theme-end">
@@ -279,9 +307,9 @@
     <script>
         const themes = [
             { backgroundColor: '#1e1e1e', color: '#ffffff', fontFamily: 'Orbitron, sans-serif', title: 'Welcome' },
-            { backgroundColor: '#ffffff', color: '#000000', fontFamily: 'Roboto, sans-serif', title: 'Basic info' },
-            { backgroundColor: '#005f99', color: '#ffffff', fontFamily: 'Montserrat, sans-serif', title: 'ABOUT ME' },
-            { backgroundColor: '#f2a2a2', color: '#000000', fontFamily: 'Open Sans, sans-serif', title: 'THE END' }
+            { backgroundColor: '#2e2e2e', color: '#ffffff', fontFamily: 'Roboto, sans-serif', fontWeight: '700', title: 'Basic info' },
+            { backgroundColor: '#444444', color: '#ffffff', fontFamily: 'Roboto, sans-serif', fontWeight: '700', title: 'My Projects' },
+            { backgroundColor: '#333333', color: '#ffffff', fontFamily: 'Roboto, sans-serif', fontWeight: '700', title: 'THE END' }
         ];
 
         let currentSection = 0;
@@ -293,6 +321,7 @@
             sections[sectionIndex].style.backgroundColor = theme.backgroundColor;
             sections[sectionIndex].style.color = theme.color;
             sections[sectionIndex].style.fontFamily = theme.fontFamily;
+            sections[sectionIndex].style.fontWeight = theme.fontWeight;
 
             const header = sections[sectionIndex].querySelector('.header');
             header.textContent = theme.title;
