@@ -18,50 +18,52 @@
             background-color: #1e1e1e;
             color: #ffffff;
             font-family: 'Roboto', sans-serif;
+            cursor: none; /* Hide the default cursor */
         }
         .container {
             display: flex;
             height: 100vh;
             width: 100vw;
-            flex-direction: row;
         }
         .left {
+            width: 60%;
+            padding: 50px;
+            background-color: #2c003e;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
-            align-items: flex-start;
-            padding: 20px;
-            width: 50%;
-            background-color: #2c003e;
+            justify-content: center;
             color: white;
         }
         .right {
-            width: 50%;
+            width: 40%;
             background: url('https://cripper.lol/assets/image.png') no-repeat center center;
             background-size: cover;
+            position: relative;
         }
         .header {
-            display: flex;
-            align-items: center;
-            font-family: 'Open Sans', sans-serif;
+            font-family: 'Orbitron', sans-serif;
             font-size: 2em;
-            margin-top: 20px;
+            margin-bottom: 20px;
         }
-        .header svg {
-            margin-left: 20px;
+        .social-icons {
+            margin-top: 10px;
+            display: flex;
+            gap: 15px;
+        }
+        .social-icons svg {
+            width: 24px;
+            height: 24px;
             cursor: pointer;
         }
-        .header svg:hover {
+        .social-icons svg:hover {
             fill: #ff6ec7;
         }
         .animated-text {
-            margin-top: 40px;
-            font-size: 2em;
-            font-family: 'Roboto', sans-serif;
+            font-size: 2.5em;
+            margin-top: 20px;
         }
         .highlight {
             color: #ff6ec7;
-            font-family: 'Orbitron', sans-serif;
         }
         @keyframes typing {
             from { width: 0; }
@@ -78,28 +80,68 @@
             border-right: 0.15em solid white;
             animation: typing 3s steps(30, end), blink 0.75s step-end infinite;
         }
+        #custom-cursor {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-color: #ff6ec7;
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+            left: 50%; /* Initial position */
+            top: 50%;  /* Initial position */
+        }
+        .clickable:hover #custom-cursor {
+            background-color: #ffffff;
+            box-shadow: 0 0 10px #ff6ec7;
+        }
+        #scroll-button {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: #ff6ec7;
+            border: none;
+            border-radius: 50%;
+            color: #ffffff;
+            font-size: 1.5em;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 10px #000000;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        #scroll-button:hover {
+            background-color: #ffffff;
+            color: #ff6ec7;
+            box-shadow: 0 0 20px #ff6ec7;
+        }
     </style>
 </head>
 <body>
+    <div id="custom-cursor"></div>
     <div class="container">
         <div class="left">
             <div class="header">
-                <div>
-                    <span style="color: #ff6ec7;">ᴄ</span>
-                    <span style="color: #ff7bd5;">ʀ</span>
-                    <span style="color: #ff8ce3;">ɪ</span>
-                    <span style="color: #ff9df1;">ᴘ</span>
-                    <span style="color: #ffaeff;">ᴘ</span>
-                    <span style="color: #ffbfff;">ᴇ</span>
-                    <span style="color: #ffcfef;">ʀ</span>
-                </div>
-                <a href="https://www.youtube.com/@agentcripper" target="_blank">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M21.8 8S21.56 6.4 20.8 5.64c-.78-.8-1.65-.8-2.05-.85C15.92 4.5 12 4.5 12 4.5h-.01s-3.92 0-5.74.29c-.4.04-1.27.05-2.05.85-.77.76-1 .87-1.02 2.36C3.1 9.6 3 10.7 3 12c0 1.3.1 2.4.18 3.36.02 1.5.24 1.61 1.02 2.36.78.8 1.8.78 2.24.86C8.06 19.5 12 19.5 12 19.5s3.92 0 5.74-.29c.4-.04 1.27-.05 2.05-.85.77-.76 1-.87 1.02-2.36.08-.96.18-2.06.18-3.36 0-1.3-.1-2.4-.18-3.36zM10 14.6v-5.2l5.2 2.6-5.2 2.6z"/>
+                <span style="color: #ff6ec7;">ᴄ</span>
+                <span style="color: #ff7bd5;">ʀ</span>
+                <span style="color: #ff8ce3;">ɪ</span>
+                <span style="color: #ff9df1;">ᴘ</span>
+                <span style="color: #ffaeff;">ᴘ</span>
+                <span style="color: #ffbfff;">ᴇ</span>
+                <span style="color: #ffcfef;">ʀ</span>
+            </div>
+            <div class="social-icons">
+                <a href="https://www.youtube.com/@agentcripper" target="_blank" class="clickable">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
+                        <path d="M19.615 3.184A40.147 40.147 0 0 0 12 2.5a40.147 40.147 0 0 0-7.615.684C2.95 3.472 2.334 4.086 2.052 5.3 1.75 6.616 1.5 8.986 1.5 12s.25 5.384.553 6.7c.282 1.214.898 1.828 2.333 2.116A40.147 40.147 0 0 0 12 21.5a40.147 40.147 0 0 0 7.615-.684c1.435-.288 2.051-.902 2.333-2.116.302-1.316.552-3.686.552-6.7s-.25-5.384-.552-6.7c-.282-1.214-.898-1.828-2.333-2.116zM10 16.018v-8.036l6 4.018-6 4.018z"/>
                     </svg>
                 </a>
-                <a href="https://github.com/LeCripper" target="_blank">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                <a href="https://github.com/LeCripper" target="_blank" class="clickable">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
                         <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.11.82-.26.82-.577 0-.286-.01-1.04-.015-2.04-3.338.726-4.042-1.61-4.042-1.61-.546-1.385-1.333-1.755-1.333-1.755-1.09-.744.082-.729.082-.729 1.205.084 1.84 1.237 1.84 1.237 1.07 1.835 2.81 1.305 3.495.997.107-.776.418-1.305.762-1.605-2.665-.304-5.466-1.333-5.466-5.933 0-1.31.465-2.382 1.235-3.222-.125-.303-.535-1.522.115-3.176 0 0 1.005-.322 3.3 1.23.955-.265 1.98-.398 3-.403 1.02.005 2.045.138 3 .403 2.28-1.552 3.285-1.23 3.285-1.23.655 1.655.245 2.873.12 3.176.77.84 1.235 1.912 1.235 3.222 0 4.61-2.805 5.625-5.475 5.92.43.372.81 1.102.81 2.222 0 1.606-.015 2.896-.015 3.286 0 .323.21.694.825.576C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12z"/>
                     </svg>
                 </a>
@@ -108,7 +150,9 @@
                 I can <span id="typing-text" class="highlight"></span>
             </div>
         </div>
-        <div class="right"></div>
+        <div class="right">
+            <button id="scroll-button">&rarr;</button>
+        </div>
     </div>
 
     <script>
@@ -139,6 +183,36 @@
         }
 
         document.addEventListener("DOMContentLoaded", type);
+
+        // Custom cursor script
+        const cursor = document.getElementById('custom-cursor');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.pageX + 'px';
+            cursor.style.top = e.pageY + 'px';
+        });
+
+        // Add hover effect for clickable elements
+        document.querySelectorAll('.clickable').forEach(el => {
+            el.addEventListener('mouseover', () => {
+                cursor.style.backgroundColor = '#ffffff';
+                cursor.style.boxShadow = '0 0 10px #ff6ec7';
+            });
+            el.addEventListener('mouseout', () => {
+                cursor.style.backgroundColor = '#ff6ec7';
+                cursor.style.boxShadow = 'none';
+            });
+        });
+
+        // Scroll button functionality
+        const scrollButton = document.getElementById('scroll-button');
+        const images = ['https://cripper.lol/assets/image.png']; // Add more image URLs here
+        let currentImageIndex = 0;
+
+        scrollButton.addEventListener('click', () => {
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            document.querySelector('.right').style.backgroundImage = `url('${images[currentImageIndex]}')`;
+        });
     </script>
 </body>
 </html>
